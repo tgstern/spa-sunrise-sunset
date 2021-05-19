@@ -7,7 +7,7 @@ the values into the appropriate fields and click "Next." Once you have entered a
 will make the calls to a third-party API and display the results in the order entered.
 
 There are built-in checks on the values of the coordinates entered, and it will not call the API if the values 
-are not numbers of if they are not in the necessary range (-90 to 90 for latitude, -180 to 180 for longitude). 
+are not numbers or if they are not in the necessary range (-90 to 90 for latitude, -180 to 180 for longitude). 
 There is an additional error handler if something else fails on the API call.
 
 Test the application with known real coordinates as well as impossible coordinates or non-number values to see
