@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Input from './Input'
+import Result from './Result'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            queries: [],
+        }
+        this.handleInput = this.handleInput.bind(this)
+    }
+
+    handleInput = (lat, long) => {
+        this.setState({
+            queries: [...this.state.queries, {'lat': lat, 'long': long}],
+        })
+    }
+
+    render() {
+        if (this.state.queries.length < 5) {
+            return <Input sendQuery={this.handleInput}/>
+        } else {
+            return this.state.queries.map((query, index) => {
+                return <Result key={index} number={index} lat={query.lat} long={query.long}/>
+            })
+        }
+    }
 }
 
 export default App;
