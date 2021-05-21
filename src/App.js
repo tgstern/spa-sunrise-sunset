@@ -11,6 +11,7 @@ class App extends React.Component {
         this.handleInput = this.handleInput.bind(this)
     }
 
+    // function binds to Input component, receives and stores data pairs in state
     handleInput = (lat, long) => {
         this.setState({
             queries: [...this.state.queries, {'lat': lat, 'long': long}],
@@ -19,7 +20,7 @@ class App extends React.Component {
 
     render() {
         if (this.state.queries.length < 5) {
-            return <Input sendQuery={this.handleInput}/>
+            return <Input number={this.state.queries.length + 1} sendQuery={this.handleInput}/>
         } else {
             return this.state.queries.map((query, index) => {
                 return <Result key={index} number={index} lat={query.lat} long={query.long}/>

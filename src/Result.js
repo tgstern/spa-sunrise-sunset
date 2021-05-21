@@ -9,35 +9,32 @@ class Result extends React.Component {
         };
     }
 
+    // async fetch call to API when component mounts, storing sunrise & sunset times in state
     componentDidMount() {
-        if (this.props.lat !== 'Invalid latitude' && this.props.long !== 'Invalid longitude') {
-            fetch('https://api.sunrise-sunset.org/json?lat=' + this.props.lat + '&lng=' + this.props.long)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        sunrise: result.results.sunrise,
-                        sunset: result.results.sunset,
-                        isLoaded: true,
-                    })
-                },
-                (error) => {
-                    this.setState({
-                        error: error,
-                        isLoaded: true,
-                    })
-                }
-            )
-        } else {
-            this.setState({isLoaded: true})
-        }
+        fetch('https://api.sunrise-sunset.org/json?lat=' + this.props.lat + '&lng=' + this.props.long)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    sunrise: result.results.sunrise,
+                    sunset: result.results.sunset,
+                    isLoaded: true,
+                })
+            },
+            (error) => {
+                this.setState({
+                    error,
+                    isLoaded: true,
+                })
+            }
+        )
     }
 
     render() {
         if (this.state.error) {
-            return <div>Error: {this.state.error.message}</div>
+            return <div className='container'>Error: {this.state.error.message}</div>
         } else if (!this.state.isLoaded) {
-            return <div>Loading...</div>
+            return <div className='container'>Loading...</div>
         } else {
             return (
                 <div className='container result'>
@@ -48,7 +45,6 @@ class Result extends React.Component {
                         <li>Sunrise: {this.state.sunrise ? this.state.sunrise + ' (UTC)' : "Not found"}</li>
                         <li>Sunset: {this.state.sunset ? this.state.sunset + ' (UTC)' : 'Not found'}</li>
                     </ul>
-                    <small>Data from <a href='https://sunrise-sunset.org/api' target="_blank" rel="noreferrer">Sunrise-Sunset API</a></small>
                 </div>
             )
         }
