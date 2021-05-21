@@ -9,6 +9,8 @@ Front end validation is included to ensure latitude/longitude values are numbers
 
 Pulls data from [Sunrise-Sunset API](https://sunrise-sunset.org/api). Known issue: this API has an issue handling a value of 0, so latitude or longitude of 0 degrees will not work correctly.
 
+### `npm start`
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -24,6 +26,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-Pulls data from [Sunrise-Sunset API](https://sunrise-sunset.org/api).
-Known issue: this API has an issue handling a value of 0, so latitude or longitude of 0 degrees will not 
-work correctly.
